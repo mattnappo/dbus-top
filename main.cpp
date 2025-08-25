@@ -27,7 +27,6 @@
 #include <unistd.h>
 
 #include <cassert>
-#include <format>
 #include <iomanip>
 #include <mutex>
 #include <sstream>
@@ -171,7 +170,9 @@ void UpdateWindowSizes()
 
 std::string FloatToString(float value)
 {
-    return std::format("{:.2f}", value);
+    std::ostringstream oss;
+    oss << std::fixed << std::setprecision(2) << value;
+    return oss.str();
 }
 
 void DBusTopRefresh()
